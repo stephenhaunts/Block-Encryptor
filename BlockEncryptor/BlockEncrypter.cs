@@ -63,7 +63,7 @@ namespace BlockEncrypter
 
                 var compressed = Compressor.Compress(dataToEncrypt);
 
-                var encrpytedMessage = aes.Encrypt(compressed, Convert.ToBase64String(password), salt, 70000);
+                var encrpytedMessage = aes.Encrypt(compressed, password, salt, 70000);
                 var fullMessage = ByteHelpers.Combine(salt, encrpytedMessage);
 
                 return fullMessage;
@@ -104,7 +104,7 @@ namespace BlockEncrypter
             Buffer.BlockCopy(dataToDecrypt, 0, salt, 0, 32);
             Buffer.BlockCopy(dataToDecrypt, 32, message, 0, dataToDecrypt.Length - 32);
 
-            var deCompressed = Compressor.Decompress(aes.Decrypt(message, Convert.ToBase64String(password), salt, 70000));
+            var deCompressed = Compressor.Decompress(aes.Decrypt(message, password, salt, 70000));
            
             return deCompressed;
         }
