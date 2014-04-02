@@ -62,7 +62,7 @@ namespace BlockEncrypter.Tests.Unit
         {
             var aes = new Aes();
             var data = new byte[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
-            var encryptedData = aes.Encrypt(data, "password", Encoding.ASCII.GetBytes("eryryn78ynr78yn"), 1000);            
+            var encryptedData = aes.Encrypt(data, Encoding.ASCII.GetBytes("password"), Encoding.ASCII.GetBytes("eryryn78ynr78yn"), 1000);            
 
             Assert.IsTrue(ByteArrayCompare(data, encryptedData));
         }
@@ -100,8 +100,8 @@ namespace BlockEncrypter.Tests.Unit
         {
             var aes = new Aes();
             var originalData = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
-            var encryptedData = aes.Encrypt(originalData, "password", Encoding.ASCII.GetBytes("eryryn78ynr78yn"), 1000);
-            var decryptedData = aes.Decrypt(encryptedData, "password", Encoding.ASCII.GetBytes("eryryn78ynr78yn"), 1000);
+            var encryptedData = aes.Encrypt(originalData, Encoding.ASCII.GetBytes("password"), Encoding.ASCII.GetBytes("eryryn78ynr78yn"), 1000);
+            var decryptedData = aes.Decrypt(encryptedData, Encoding.ASCII.GetBytes("password"), Encoding.ASCII.GetBytes("eryryn78ynr78yn"), 1000);
 
             Assert.IsFalse(ByteArrayCompare(originalData, decryptedData));
         }

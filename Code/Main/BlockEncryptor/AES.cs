@@ -26,7 +26,7 @@ namespace BlockEncrypter
 {
     public class Aes
     {        
-        public byte[] Encrypt(byte[] dataToEncrypt, string password, byte[] salt, int pbkdfRounds)
+        public byte[] Encrypt(byte[] dataToEncrypt, byte[] password, byte[] salt, int pbkdfRounds)
         {
             if (dataToEncrypt == null)
             {
@@ -38,7 +38,7 @@ namespace BlockEncrypter
                 throw new InvalidOperationException("dataToEncrypt");
             }
 
-            if (string.IsNullOrEmpty(password))
+            if (password == null)
             {
                 throw new ArgumentNullException("password");
             }
@@ -88,7 +88,7 @@ namespace BlockEncrypter
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        public byte[] Decrypt(byte[] dataToDecrypt, string password, byte[] salt, int pbkdfRounds)
+        public byte[] Decrypt(byte[] dataToDecrypt, byte[] password, byte[] salt, int pbkdfRounds)
         {
             if (dataToDecrypt == null)
             {
@@ -100,7 +100,7 @@ namespace BlockEncrypter
                 throw new InvalidOperationException("dataToDecrypt");
             }
 
-            if (string.IsNullOrEmpty(password))
+            if (password == null)
             {
                 throw new ArgumentNullException("password");
             }
